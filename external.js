@@ -1,5 +1,5 @@
 var answer = ["rock", "paper", "scissor"];
-let playerScore = 0, computerScore = 0;
+let playerScore, computerScore;
 const container = document.querySelector('.container');
 
 const score = document.createElement("div");
@@ -56,6 +56,10 @@ function playRound(playerSelection) {
 }
 
 function gameStart() {
+    playerScore = 0;
+    computerScore = 0;
+    score.textContent = `Player: ${playerScore} VS Computer: ${computerScore}`;
+    result.textContent = "";
     rock.addEventListener('click', rock.fn = function fn () {
         playRound("rock");  
     });
@@ -88,10 +92,6 @@ function playAgain(){
     container.appendChild(buttonPlayAgain);
     buttonPlayAgain.textContent = "Play Again";
     buttonPlayAgain.addEventListener('click', function () {
-        playerScore = 0;
-        computerScore = 0;
-        score.textContent = `Player: ${playerScore} VS Computer: ${computerScore}`;
-        result.textContent = "";
         gameStart();
         buttonPlayAgain.remove();
     });

@@ -8,31 +8,19 @@ score.textContent = `Player: ${playerScore} VS Computer: ${computerScore}`;
 
 const rock = document.createElement("button");
 rock.textContent = "Rock";
-rock.addEventListener('click', () => {
-    playRound("rock");  
-});
 container.appendChild(rock);
 
 
 const paper = document.createElement("button");
 paper.textContent = "Paper";
 container.appendChild(paper);
-paper.addEventListener('click', () => {
-    playRound("paper");
-});
-
 
 const scissor = document.createElement("button");
 scissor.textContent = "Scissor";
 container.appendChild(scissor);
-scissor.addEventListener('click', () => {
-    playRound("scissor");
-});
 
 const result = document.createElement("div");
-container.appendChild(result);
-
-
+container.appendChild(result);  
 
 function getComputerChoice() {
     var index = Math.floor(Math.random() * answer.length);
@@ -67,12 +55,46 @@ function playRound(playerSelection) {
     }
 }
 
+function gameStart() {
+    rock.addEventListener('click', rock.fn = function fn () {
+        playRound("rock");  
+    });
+
+    paper.addEventListener('click', paper.fn = function fn() {
+        playRound("paper");
+    });
+    scissor.addEventListener('click', scissor.fn = function fn() {
+        playRound("scissor");
+    });
+}
+
 function updateScore(){
     score.textContent = `Player: ${playerScore} VS Computer: ${computerScore}`;
     if (computerScore == 5){
         result.textContent = "Computer Wins!";
+        playAgain();
     }
     else if(playerScore == 5){
         result.textContent = "Player Wins!";
+        playAgain();
     }
 }
+
+function playAgain(){   
+    rock.removeEventListener('click', rock.fn);
+    paper.removeEventListener('click', paper.fn);
+    scissor.removeEventListener('click', scissor.fn);
+    const buttonPlayAgain = document.createElement("button")
+    container.appendChild(buttonPlayAgain);
+    buttonPlayAgain.textContent = "Play Again";
+    buttonPlayAgain.addEventListener('click', function () {
+        playerScore = 0;
+        computerScore = 0;
+        score.textContent = `Player: ${playerScore} VS Computer: ${computerScore}`;
+        result.textContent = "";
+        gameStart();
+        buttonPlayAgain.remove();
+    });
+}
+
+gameStart();

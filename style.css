@@ -1,0 +1,25 @@
+body {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Times New Roman', Times, serif;
+    min-height: 100vh;
+    margin: 0px;
+}
+div.header {
+    height: 50px;
+    padding: 20px 50px;
+    background-color: #1F2937;
+    display: flex;
+    align-items: center;
+}
+div.container {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    align-items: center;
+    gap: 20px;
+    button {
+        width: 80px;
+    }
+}
